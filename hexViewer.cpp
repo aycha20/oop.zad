@@ -73,7 +73,9 @@ int getFileSize(std::ifstream& ifs, const char* name)
 
 	ifs.seekg(std::streamoff(0), std::ios::end);
 
-	std::streampos endP = ifs.tellg();
+	std::streampos end = ifs.tellg();
+	 
+	int endP = static_cast<int>(end);
 
 	ifs.seekg(curPos);
 
@@ -88,21 +90,22 @@ void readBin(const size_t fileSize, const unsigned char* fileInfo)
 	}
 	std::cout << std::dec << std::nouppercase;
 	std::cout << std::endl;
+}
 
+bool isValid(const char c)
+{
+	return (c >= 'A' || c <= 'Z') || (c >= 'a' || c <= 'z');
 }
 
 void getASCII(const size_t fileSize, const unsigned char* fileInfo)
-{
-	
+{	
 	for (size_t i = 0; i < fileSize; i++)
 	{
-		if (!((fileInfo[i] >= 'A' || fileInfo[i] <= 'Z') || 
-			(fileInfo[i] >= 'a' || fileInfo[i] <= 'z')))
+		if (!isValid(fileInfo[i]))
 		{
 			std::cout << ".. ";
 			continue;
 		}
-
 		std::cout << fileInfo[i] << " ";
 	}
 	std::cout << std::endl;
