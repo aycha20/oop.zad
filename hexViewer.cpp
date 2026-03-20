@@ -75,7 +75,7 @@ int getFileSize(std::ifstream& ifs, const char* name)
 
 	std::streampos endP = ifs.tellg();
 
-	ifs.seekg(0);
+	ifs.seekg(curPos);
 
 	return endP;
 }
