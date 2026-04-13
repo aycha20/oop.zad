@@ -113,7 +113,7 @@ bool Backpack::removeBook(ISBN& InputISBN)
 
 void Backpack::transferToBinary(const char* fileName)
 {
-	std::ofstream file (fileName, std::ios::binary);
+	std::ofstream file (fileName, std::ios::binary | std::ios::app);
 	if (!file.is_open())
 	{
 		throw "File cannot open!\n";
