@@ -6,7 +6,7 @@ AlgebrVector::AlgebrVector(const int newN)
 {
 	if (newN < 0)
 	{
-		throw std::invalid_argument("Invalid size passed\n");
+		throw std::out_of_range("Invalid size passed\n");
 	}
 
 	N = newN;
@@ -76,7 +76,7 @@ void AlgebrVector::fillWithZero(AlgebrVector& a, int newN)
 {
 	if (newN < a.N)
 	{
-		throw std::invalid_argument("Size too small\n");
+		throw std::out_of_range("Size too small\n");
 	}
 
 	AlgebrVector tempV(newN);
@@ -98,13 +98,13 @@ double& AlgebrVector::operator[](const int idx)
 {
 	if (idx < 0 || idx >= N)
 	{
-		throw std::invalid_argument("Invalid argument\n");
+		throw std::out_of_range("Invalid argument\n");
 	}
 
 	return data[idx];
 }
 
-const double AlgebrVector::operator[](const int idx) const
+double AlgebrVector::operator[](const int idx) const
 {
 	if (idx < 0 || idx >= N)
 	{
@@ -178,7 +178,7 @@ AlgebrVector& AlgebrVector::operator-=(const AlgebrVector& other)
 	return *this;
 }
 
-AlgebrVector& AlgebrVector::operator*=(const int n)
+AlgebrVector& AlgebrVector::operator*=(const double n)
 {
 	for (int i = 0; i < N; ++i)
 	{
@@ -188,11 +188,11 @@ AlgebrVector& AlgebrVector::operator*=(const int n)
 	return *this;
 }
 
-AlgebrVector& AlgebrVector::operator/=(const int n)
+AlgebrVector& AlgebrVector::operator/=(const double n)
 {
 	if (n == 0)
 	{
-		throw std::invalid_argument("Division by zero\n");
+		throw std::out_of_range("Division by zero\n");
 	}
 
 	for (int i = 0; i < N; ++i)
@@ -234,7 +234,7 @@ AlgebrVector operator/(const AlgebrVector& a, const int b)
 {
 	if (b == 0)
 	{
-		throw std::invalid_argument("Invalid\n");
+		throw std::out_of_range("Invalid\n");
 	}
 
 	AlgebrVector res = a;
@@ -244,7 +244,7 @@ AlgebrVector operator/(const AlgebrVector& a, const int b)
 	return res;
 }
 
-double AlgebrVector::operator%(const AlgebrVector& other)
+double AlgebrVector::operator%(const AlgebrVector& other) const
 {
 	int size = (N > other.N ? N : other.N);
 	AlgebrVector temp1(*this);
