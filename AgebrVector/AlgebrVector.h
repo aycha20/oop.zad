@@ -16,17 +16,17 @@ public:
 
 	int getN() const;
 
-	void fillWithZero(AlgebrVector& a, int newN);
+	static void fillWithZero(AlgebrVector& a, int newN);
 
 	double& operator[](const int idx);
-	const double operator[](const int idx) const;
+	double operator[](const int idx) const;
 
 	AlgebrVector& operator+=(const AlgebrVector& other);
 	AlgebrVector& operator-=(const AlgebrVector& other);
-	AlgebrVector& operator*=(const int n);
-	AlgebrVector& operator/=(const int n);
+	AlgebrVector& operator*=(const double n);
+	AlgebrVector& operator/=(const double n);
 
-	double operator%(const AlgebrVector& other);
+	double operator%(const AlgebrVector& other) const;
 
 private:
 	int N = 0;
