@@ -1,35 +1,11 @@
 #pragma once
 
 #include <iostream>
+#include "Transformation.h"
 
 class TextProcessor
 {
 public:
-	enum class TransformationType
-	{
-		TO_UPPER, 
-		TO_LOWER, 
-		REPLACE_CHAR, 
-		REPLACE_STRING
-	};
-
-	struct Transformation
-	{
-		TransformationType type;
-		bool active;
-
-		char oldChar;
-		char newChar;
-
-		char* oldString;
-		char* newString;
-
-		Transformation();
-		Transformation(const Transformation& other);
-		Transformation& operator=(const Transformation& other);
-		~Transformation();
-	};
-
 	TextProcessor(const char* newText);
 	
 	TextProcessor();
